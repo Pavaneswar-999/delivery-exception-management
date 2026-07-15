@@ -8,12 +8,19 @@ const exceptionsBody = document.querySelector("#exceptions-body");
 const emptyStateRow = document.querySelector("#empty-state-row");
 const typeFilter = document.querySelector("#type-filter");
 const statusFilter = document.querySelector("#status-filter");
+const clearFiltersButton = document.querySelector("#clear-filters");
 const totalCount = document.querySelector("#total-count");
 const openCount = document.querySelector("#open-count");
 const resolvedCount = document.querySelector("#resolved-count");
+const deleteDialog = document.querySelector("#delete-dialog");
+const deleteDialogCopy = document.querySelector("#delete-dialog-copy");
+const closeDeleteDialogButton = document.querySelector("#close-delete-dialog");
+const cancelDeleteButton = document.querySelector("#cancel-delete");
+const confirmDeleteButton = document.querySelector("#confirm-delete");
 
 const exceptions = [];
 let nextExceptionId = 1;
+let pendingDeleteException = null;
 
 exceptionForm.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -27,7 +34,7 @@ exceptionForm.addEventListener("submit", function (event) {
   clearValidationState();
 
   if (!deliveryId || !customerName || !issueType || !selectedPriority) {
-    showValidationMessage("Complete all required fields before adding the exception.");
+    showValidationMessage("Complete all required fields before creating the record.");
     if (!deliveryId) {
       deliveryIdInput.classList.add("input-error");
     }
@@ -58,7 +65,7 @@ exceptionForm.addEventListener("submit", function (event) {
   emptyStateRow.classList.add("is-hidden");
   exceptionForm.reset();
   clearValidationState();
-  showValidationMessage("Exception added to the operations queue.", false);
+  showValidationMessage("Exception record created and added to the queue.", false);
   updateCounters();
   applyFilters();
   deliveryIdInput.focus();
@@ -67,9 +74,19 @@ exceptionForm.addEventListener("submit", function (event) {
 exceptionsBody.addEventListener("click", function (event) {
   const actionButton = event.target;
   const action = actionButton.getAttribute("data-action");
+
+  if (!action) {
+    return;
+  }
+
+  if (action === "clear-filters") {
+    resetFilters();
+    return;
+  }
+
   const exceptionId = Number(actionButton.getAttribute("data-id"));
 
-  if (!action || !exceptionId) {
+  if (!exceptionId) {
     return;
   }
 
@@ -84,12 +101,22 @@ exceptionsBody.addEventListener("click", function (event) {
   }
 
   if (action === "delete") {
-    deleteException(exception);
+    openDeleteDialog(exception);
   }
 });
 
 typeFilter.addEventListener("change", applyFilters);
 statusFilter.addEventListener("change", applyFilters);
+clearFiltersButton.addEventListener("click", resetFilters);
+closeDeleteDialogButton.addEventListener("click", closeDeleteDialog);
+cancelDeleteButton.addEventListener("click", closeDeleteDialog);
+confirmDeleteButton.addEventListener("click", confirmDelete);
+deleteDialog.addEventListener("click", function (event) {
+  if (event.target === deleteDialog) {
+    closeDeleteDialog();
+  }
+});
+deleteDialog.addEventListener("cancel", closeDeleteDialog);
 
 function createExceptionRow(exception) {
   const row = document.createElement("tr");
@@ -182,12 +209,39 @@ function resolveException(exception) {
   applyFilters();
 }
 
-function deleteException(exception) {
-  const confirmed = window.confirm("Delete this delivery exception? This action cannot be undone.");
+function openDeleteDialog(exception) {
+  pendingDeleteException = exception;
+  deleteDialogCopy.textContent = "Delete record " + exception.deliveryId + "? This action cannot be undone.";
 
-  if (!confirmed) {
+  if (typeof deleteDialog.showModal === "function") {
+    deleteDialog.showModal();
     return;
   }
+
+  if (window.confirm("Delete record " + exception.deliveryId + "? This action cannot be undone.")) {
+    removeException(exception);
+  }
+}
+
+function closeDeleteDialog() {
+  pendingDeleteException = null;
+
+  if (deleteDialog.open) {
+    deleteDialog.close();
+  }
+}
+
+function confirmDelete() {
+  if (!pendingDeleteException) {
+    return;
+  }
+
+  const exception = pendingDeleteException;
+  closeDeleteDialog();
+  removeException(exception);
+}
+
+function removeException(exception) {
 
   exceptionsBody.removeChild(exception.row);
 
@@ -227,6 +281,12 @@ function applyFilters() {
   updateNoResultsState(visibleCount);
 }
 
+function resetFilters() {
+  typeFilter.value = "All";
+  statusFilter.value = "All";
+  applyFilters();
+}
+
 function updateNoResultsState(visibleCount) {
   const noResultsRow = document.querySelector("#no-results-row");
 
@@ -246,13 +306,19 @@ function updateNoResultsState(visibleCount) {
       icon.setAttribute("aria-hidden", "true");
       icon.textContent = "⌕";
       const title = document.createElement("strong");
-      title.textContent = "No matching exceptions";
+      title.textContent = "No exceptions match these filters";
       const description = document.createElement("span");
-      description.textContent = "Try adjusting the filters to see more records.";
+      description.textContent = "Clear the filters to view the full queue.";
+      const clearButton = document.createElement("button");
+      clearButton.classList.add("action-button", "action-button--clear");
+      clearButton.setAttribute("type", "button");
+      clearButton.setAttribute("data-action", "clear-filters");
+      clearButton.textContent = "Clear filters";
 
       message.appendChild(icon);
       message.appendChild(title);
       message.appendChild(description);
+      message.appendChild(clearButton);
       cell.appendChild(message);
       row.appendChild(cell);
       exceptionsBody.appendChild(row);

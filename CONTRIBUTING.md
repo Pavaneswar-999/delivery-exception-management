@@ -29,7 +29,7 @@ This project follows the [Contributor Covenant Code of Conduct](https://www.cont
 
 ```bash
 # Fork and clone your fork
-git clone https://github.com/YOUR_USERNAME/delivery-exception-management.git
+git clone https://github.com/pavan/delivery-exception-management.git
 cd delivery-exception-management
 
 # Add upstream remote
@@ -283,8 +283,8 @@ Maintainers handle releases:
 
 ## 📞 Getting Help
 
-- **Questions**: [GitHub Discussions](https://github.com/yourusername/delivery-exception-management/discussions)
-- **Bugs**: [GitHub Issues](https://github.com/yourusername/delivery-exception-management/issues)
+- **Questions**: [GitHub Discussions](https://github.com/pavan/delivery-exception-management/discussions)
+- **Bugs**: [GitHub Issues](https://github.com/pavan/delivery-exception-management/issues)
 - **Security**: Email security@greyatom-logistics.com
 
 ---

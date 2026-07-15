@@ -2,9 +2,8 @@
 
 > A production-ready frontend dashboard for GreyAtom Logistics operations team to capture, track, and resolve delivery exceptions in real-time.
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/yourusername/delivery-exception-management/ci.yml?branch=main&label=CI)](https://github.com/yourusername/delivery-exception-management/actions)
-[![Coverage](https://img.shields.io/codecov/c/github/yourusername/delivery-exception-management?label=Coverage)](https://codecov.io/gh/yourusername/delivery-exception-management)
-[![License](https://img.shields.io/github/license/yourusername/delivery-exception-management)](LICENSE)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/pavan/delivery-exception-management/ci.yml?branch=main&label=CI)](https://github.com/pavan/delivery-exception-management/actions)
+[![License](https://img.shields.io/github/license/pavan/delivery-exception-management)](LICENSE)
 [![Accessibility](https://img.shields.io/badge/a11y-WCAG%202.1%20AA-blue)](https://www.w3.org/WAI/WCAG21/quickref/)
 
 ## Overview
@@ -285,8 +284,8 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 **GreyAtom Logistics** — Internal Operations Tools Team
 
-- Repository: [github.com/yourusername/delivery-exception-management](https://github.com/yourusername/delivery-exception-management)
-- Issues: [GitHub Issues](https://github.com/yourusername/delivery-exception-management/issues)
+- Repository: [github.com/pavan/delivery-exception-management](https://github.com/pavan/delivery-exception-management)
+- Issues: [GitHub Issues](https://github.com/pavan/delivery-exception-management/issues)
 - Internal Wiki: [Confluence Space](https://greyatom.atlassian.net/wiki/spaces/OPS)
 
 ---

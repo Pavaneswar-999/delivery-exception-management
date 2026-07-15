@@ -25,16 +25,14 @@
         </a>
 
         <div class="topbar__context">
-          <span class="context-dot" aria-hidden="true"></span>
-          <span>Operations workspace</span>
+          <span>Internal operations tools</span>
+          <span class="context-divider" aria-hidden="true"></span>
+          <span>Delivery exceptions</span>
         </div>
 
-        <div class="topbar__user" aria-label="Signed in user">
-          <span class="avatar" aria-hidden="true">OP</span>
-          <span class="topbar__user-copy">
-            <strong>Operations Manager</strong>
-            <small>Internal tools</small>
-          </span>
+        <div class="topbar__mode">
+          <span class="mode-dot" aria-hidden="true"></span>
+          <span>Session-only mode</span>
         </div>
       </div>
     </header>
@@ -42,15 +40,15 @@
     <main id="top" class="page-shell">
       <section class="page-heading" aria-labelledby="page-title">
         <div>
-          <p class="eyebrow">DELIVERY OPERATIONS <span>/</span> EXCEPTIONS</p>
+          <p class="eyebrow">DELIVERY OPERATIONS <span>/</span> EXCEPTION MANAGEMENT</p>
           <h1 id="page-title">Delivery exception management</h1>
           <p class="page-heading__intro">
-            Capture delivery issues, keep the team aligned, and close exceptions with confidence.
+            Log, triage, and resolve delivery exceptions from one operational queue.
           </p>
         </div>
         <div class="page-heading__meta">
-          <span class="live-indicator"><span aria-hidden="true"></span> Live workspace</span>
-          <span class="date-label">Version 1.0</span>
+          <span class="workspace-label">Frontend-only workspace</span>
+          <span class="date-label">Version 1</span>
         </div>
       </section>
 
@@ -58,25 +56,25 @@
         <article class="stat-card stat-card--blue">
           <div class="stat-card__icon" aria-hidden="true">↗</div>
           <div>
-            <p class="stat-card__label">Total exceptions</p>
+            <p class="stat-card__label">Tracked exceptions</p>
             <p class="stat-card__value" id="total-count">0</p>
-            <p class="stat-card__caption">All recorded issues</p>
+            <p class="stat-card__caption">Current session</p>
           </div>
         </article>
         <article class="stat-card stat-card--amber">
           <div class="stat-card__icon" aria-hidden="true">!</div>
           <div>
-            <p class="stat-card__label">Open issues</p>
+            <p class="stat-card__label">Open exceptions</p>
             <p class="stat-card__value" id="open-count">0</p>
-            <p class="stat-card__caption">Need attention</p>
+            <p class="stat-card__caption">Awaiting action</p>
           </div>
         </article>
         <article class="stat-card stat-card--green">
           <div class="stat-card__icon" aria-hidden="true">✓</div>
           <div>
-            <p class="stat-card__label">Resolved issues</p>
+            <p class="stat-card__label">Resolved exceptions</p>
             <p class="stat-card__value" id="resolved-count">0</p>
-            <p class="stat-card__caption">Closed by the team</p>
+            <p class="stat-card__caption">Closed by operations</p>
           </div>
         </article>
       </section>
@@ -85,13 +83,13 @@
         <article class="panel report-panel">
           <div class="panel__header">
             <div>
-              <p class="section-kicker">NEW RECORD</p>
-              <h2>Report an exception</h2>
+              <p class="section-kicker">NEW EXCEPTION</p>
+              <h2>Create an exception record</h2>
             </div>
             <span class="panel__step" aria-hidden="true">01</span>
           </div>
           <p class="panel__description">
-            Add the delivery details below so the operations team can take action quickly.
+            Record the delivery context required for follow-up.
           </p>
 
           <form id="exception-form" novalidate>
@@ -142,13 +140,13 @@
 
             <div class="field">
               <label for="notes">Notes <span class="optional-label">Optional</span></label>
-              <textarea id="notes" name="notes" rows="4" placeholder="Add useful context for the delivery team..."></textarea>
+              <textarea id="notes" name="notes" rows="4" placeholder="Add context for the delivery team..."></textarea>
             </div>
 
             <div class="form-footer">
-              <p class="required-note"><span aria-hidden="true">*</span> Required fields</p>
+              <p class="required-note"><span aria-hidden="true">*</span> Required fields are marked with an asterisk.</p>
               <button class="button button--primary" type="submit">
-                <span aria-hidden="true">+</span> Add exception
+                <span aria-hidden="true">+</span> Create exception
               </button>
             </div>
           </form>
@@ -158,9 +156,9 @@
           <div class="panel__header table-panel__header">
             <div>
               <p class="section-kicker">OPERATIONS QUEUE</p>
-              <h2>Reported exceptions</h2>
+              <h2>Active delivery exceptions</h2>
             </div>
-            <span class="queue-status"><span aria-hidden="true"></span> In review</span>
+            <span class="queue-status"><span aria-hidden="true"></span> Queue active</span>
           </div>
 
           <div class="filters" aria-label="Filter exceptions">
@@ -182,6 +180,9 @@
                 <option value="Resolved">Resolved</option>
               </select>
             </div>
+            <div class="filter-actions">
+              <button id="clear-filters" class="filter-reset" type="button">Clear filters</button>
+            </div>
           </div>
 
           <div class="table-wrap">
@@ -202,23 +203,36 @@
                   <td colspan="6">
                     <div class="empty-state">
                       <span class="empty-state__icon" aria-hidden="true">✓</span>
-                      <strong>No exceptions yet</strong>
-                      <span>New delivery issues will appear here.</span>
+                      <strong>No exceptions recorded</strong>
+                      <span>Create an exception record to start the queue.</span>
                     </div>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p class="table-note">All changes are kept in this session only.</p>
+          <p class="table-note">Session-only workspace. Records are cleared when this page is closed.</p>
         </article>
       </section>
     </main>
 
     <footer class="footer">
       <p><strong>GreyAtom Logistics</strong> <span>•</span> Internal Operations Tools</p>
-      <p>Delivery Exception Management <span>•</span> Frontend Assignment</p>
+      <p>Session-only data <span>•</span> No backend connection</p>
     </footer>
+
+    <dialog id="delete-dialog" class="delete-dialog" aria-labelledby="delete-dialog-title" aria-describedby="delete-dialog-copy">
+      <form method="dialog" class="delete-dialog__card">
+        <button id="close-delete-dialog" class="delete-dialog__close" type="button" aria-label="Close delete confirmation">×</button>
+        <p class="section-kicker">REMOVE EXCEPTION</p>
+        <h2 id="delete-dialog-title">Delete this exception record?</h2>
+        <p id="delete-dialog-copy">This action cannot be undone.</p>
+        <div class="delete-dialog__actions">
+          <button id="cancel-delete" class="button button--secondary" type="button">Cancel</button>
+          <button id="confirm-delete" class="button button--danger" type="button">Delete record</button>
+        </div>
+      </form>
+    </dialog>
 
     <script src="script.js"></script>
   </body>
