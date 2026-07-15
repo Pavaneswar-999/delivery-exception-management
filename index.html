@@ -158,7 +158,7 @@
               <p class="section-kicker">OPERATIONS QUEUE</p>
               <h2>Active delivery exceptions</h2>
             </div>
-            <span class="queue-status"><span aria-hidden="true"></span> Queue active</span>
+            <span class="queue-meta">Session-only records</span>
           </div>
 
           <div class="filters" aria-label="Filter exceptions">
@@ -202,9 +202,10 @@
                 <tr id="empty-state-row" class="empty-state-row">
                   <td colspan="6">
                     <div class="empty-state">
-                      <span class="empty-state__icon" aria-hidden="true">✓</span>
+                      <span class="empty-state__icon" aria-hidden="true">+</span>
                       <strong>No exceptions recorded</strong>
                       <span>Create an exception record to start the queue.</span>
+                      <button id="empty-state-action" class="button button--secondary empty-state__action" type="button">Create first exception</button>
                     </div>
                   </td>
                 </tr>

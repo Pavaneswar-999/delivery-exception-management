@@ -12,6 +12,7 @@ const clearFiltersButton = document.querySelector("#clear-filters");
 const totalCount = document.querySelector("#total-count");
 const openCount = document.querySelector("#open-count");
 const resolvedCount = document.querySelector("#resolved-count");
+const emptyStateAction = document.querySelector("#empty-state-action");
 const deleteDialog = document.querySelector("#delete-dialog");
 const deleteDialogCopy = document.querySelector("#delete-dialog-copy");
 const closeDeleteDialogButton = document.querySelector("#close-delete-dialog");
@@ -111,6 +112,9 @@ clearFiltersButton.addEventListener("click", resetFilters);
 closeDeleteDialogButton.addEventListener("click", closeDeleteDialog);
 cancelDeleteButton.addEventListener("click", closeDeleteDialog);
 confirmDeleteButton.addEventListener("click", confirmDelete);
+emptyStateAction.addEventListener("click", function () {
+  deliveryIdInput.focus();
+});
 deleteDialog.addEventListener("click", function (event) {
   if (event.target === deleteDialog) {
     closeDeleteDialog();
@@ -242,7 +246,6 @@ function confirmDelete() {
 }
 
 function removeException(exception) {
-
   exceptionsBody.removeChild(exception.row);
 
   for (let index = 0; index < exceptions.length; index += 1) {
