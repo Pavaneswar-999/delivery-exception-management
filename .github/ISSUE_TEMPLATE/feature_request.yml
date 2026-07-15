@@ -1,0 +1,41 @@
+---
+name: Feature Request
+about: Suggest an idea for this project
+title: "[Feature] "
+labels: ["enhancement", "triage"]
+assignees: ""
+---
+
+## Problem Statement
+A clear and concise description of what problem this feature would solve. What user need does it address?
+
+## Proposed Solution
+Describe the solution you'd like to see implemented.
+
+## Alternative Solutions
+Describe any alternative solutions or features you've considered.
+
+## User Stories
+As a [user role], I want to [action], so that [benefit].
+- As a operations manager, I want to filter exceptions by date range, so that I can review yesterday's issues.
+- As a delivery driver, I want to see exception details on mobile, so that I can resolve issues on the go.
+
+## Acceptance Criteria
+- [ ] Criterion 1
+- [ ] Criterion 2
+- [ ] Criterion 3
+
+## Design Considerations
+- **UI/UX**: Any mockups, wireframes, or design references?
+- **Accessibility**: Keyboard navigation, screen reader support, color contrast?
+- **Responsive**: Mobile, tablet, desktop breakpoints?
+- **Performance**: Bundle size, load time, runtime performance?
+
+## Technical Approach
+How should this be implemented? Any specific libraries, patterns, or architectural decisions?
+
+## Dependencies
+Does this feature depend on other work? Any breaking changes?
+
+## Additional Context
+Add any other context, links, or screenshots about the feature request here.

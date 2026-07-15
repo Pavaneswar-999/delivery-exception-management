@@ -1,0 +1,35 @@
+{
+  "name": "delivery-exception-management",
+  "version": "1.0.0",
+  "description": "GreyAtom Logistics Delivery Exception Management Dashboard",
+  "private": true,
+  "scripts": {
+    "dev": "http-server -p 8000 -c-1",
+    "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
+    "lint:html": "htmlhint index.html",
+    "lint:css": "stylelint styles.css",
+    "lint:js": "eslint script.js",
+    "test:a11y": "axe-cli http://localhost:8000 --save axe-results.json --exit",
+    "test:lighthouse": "lighthouse http://localhost:8000 --output=json --output-path=./lighthouse-report.json --ci --budget-path=./lighthouse-budget.json",
+    "format": "prettier --write \"**/*.{html,css,js,json,md}\"",
+    "check:format": "prettier --check \"**/*.{html,css,js,json,md}\""
+  },
+  "devDependencies": {
+    "@htmlhint/htmlhint": "^1.1.4",
+    "axe-cli": "^5.0.0",
+    "eslint": "^8.57.0",
+    "http-server": "^14.1.1",
+    "lighthouse": "^12.0.0",
+    "prettier": "^3.2.5",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard": "^36.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "> 0.5%"
+  ]
+}

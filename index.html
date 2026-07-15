@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="GreyAtom Logistics delivery exception management dashboard"
+    />
+    <title>Delivery Exception Management | GreyAtom Logistics</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="topbar__inner">
+        <a class="brand" href="#top" aria-label="GreyAtom Logistics home">
+          <span class="brand__mark" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          <span class="brand__text">
+            <strong>GreyAtom</strong>
+            <small>LOGISTICS</small>
+          </span>
+        </a>
+
+        <div class="topbar__context">
+          <span class="context-dot" aria-hidden="true"></span>
+          <span>Operations workspace</span>
+        </div>
+
+        <div class="topbar__user" aria-label="Signed in user">
+          <span class="avatar" aria-hidden="true">OP</span>
+          <span class="topbar__user-copy">
+            <strong>Operations Manager</strong>
+            <small>Internal tools</small>
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <main id="top" class="page-shell">
+      <section class="page-heading" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">DELIVERY OPERATIONS <span>/</span> EXCEPTIONS</p>
+          <h1 id="page-title">Delivery exception management</h1>
+          <p class="page-heading__intro">
+            Capture delivery issues, keep the team aligned, and close exceptions with confidence.
+          </p>
+        </div>
+        <div class="page-heading__meta">
+          <span class="live-indicator"><span aria-hidden="true"></span> Live workspace</span>
+          <span class="date-label">Version 1.0</span>
+        </div>
+      </section>
+
+      <section class="stats-grid" aria-label="Exception summary">
+        <article class="stat-card stat-card--blue">
+          <div class="stat-card__icon" aria-hidden="true">↗</div>
+          <div>
+            <p class="stat-card__label">Total exceptions</p>
+            <p class="stat-card__value" id="total-count">0</p>
+            <p class="stat-card__caption">All recorded issues</p>
+          </div>
+        </article>
+        <article class="stat-card stat-card--amber">
+          <div class="stat-card__icon" aria-hidden="true">!</div>
+          <div>
+            <p class="stat-card__label">Open issues</p>
+            <p class="stat-card__value" id="open-count">0</p>
+            <p class="stat-card__caption">Need attention</p>
+          </div>
+        </article>
+        <article class="stat-card stat-card--green">
+          <div class="stat-card__icon" aria-hidden="true">✓</div>
+          <div>
+            <p class="stat-card__label">Resolved issues</p>
+            <p class="stat-card__value" id="resolved-count">0</p>
+            <p class="stat-card__caption">Closed by the team</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="workspace-grid" aria-label="Exception workspace">
+        <article class="panel report-panel">
+          <div class="panel__header">
+            <div>
+              <p class="section-kicker">NEW RECORD</p>
+              <h2>Report an exception</h2>
+            </div>
+            <span class="panel__step" aria-hidden="true">01</span>
+          </div>
+          <p class="panel__description">
+            Add the delivery details below so the operations team can take action quickly.
+          </p>
+
+          <form id="exception-form" novalidate>
+            <div id="form-error" class="form-alert" role="alert" aria-live="polite"></div>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="delivery-id">Delivery ID <span aria-hidden="true">*</span></label>
+                <input id="delivery-id" name="deliveryId" type="text" placeholder="e.g. GA-20481" autocomplete="off" required />
+              </div>
+              <div class="field">
+                <label for="customer-name">Customer name <span aria-hidden="true">*</span></label>
+                <input id="customer-name" name="customerName" type="text" placeholder="Enter customer name" autocomplete="name" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="issue-type">Issue type <span aria-hidden="true">*</span></label>
+              <select id="issue-type" name="issueType" required>
+                <option value="">Select an issue type</option>
+                <option value="Address Not Found">Address Not Found</option>
+                <option value="Customer Not Available">Customer Not Available</option>
+                <option value="Payment Issue">Payment Issue</option>
+                <option value="Package Damaged">Package Damaged</option>
+              </select>
+            </div>
+
+            <fieldset class="field priority-field">
+              <legend>Priority <span aria-hidden="true">*</span></legend>
+              <div class="priority-options">
+                <label class="priority-option">
+                  <input type="radio" name="priority" value="Low" required />
+                  <span class="priority-option__dot priority-option__dot--low"></span>
+                  <span>Low</span>
+                </label>
+                <label class="priority-option">
+                  <input type="radio" name="priority" value="Medium" />
+                  <span class="priority-option__dot priority-option__dot--medium"></span>
+                  <span>Medium</span>
+                </label>
+                <label class="priority-option">
+                  <input type="radio" name="priority" value="High" />
+                  <span class="priority-option__dot priority-option__dot--high"></span>
+                  <span>High</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label for="notes">Notes <span class="optional-label">Optional</span></label>
+              <textarea id="notes" name="notes" rows="4" placeholder="Add useful context for the delivery team..."></textarea>
+            </div>
+
+            <div class="form-footer">
+              <p class="required-note"><span aria-hidden="true">*</span> Required fields</p>
+              <button class="button button--primary" type="submit">
+                <span aria-hidden="true">+</span> Add exception
+              </button>
+            </div>
+          </form>
+        </article>
+
+        <article class="panel table-panel">
+          <div class="panel__header table-panel__header">
+            <div>
+              <p class="section-kicker">OPERATIONS QUEUE</p>
+              <h2>Reported exceptions</h2>
+            </div>
+            <span class="queue-status"><span aria-hidden="true"></span> In review</span>
+          </div>
+
+          <div class="filters" aria-label="Filter exceptions">
+            <div class="filter-field">
+              <label for="type-filter">Filter by issue type</label>
+              <select id="type-filter">
+                <option value="All">All issue types</option>
+                <option value="Address Not Found">Address Not Found</option>
+                <option value="Customer Not Available">Customer Not Available</option>
+                <option value="Payment Issue">Payment Issue</option>
+                <option value="Package Damaged">Package Damaged</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label for="status-filter">Filter by status</label>
+              <select id="status-filter">
+                <option value="All">All statuses</option>
+                <option value="Open">Open</option>
+                <option value="Resolved">Resolved</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <caption class="sr-only">Delivery exceptions and their current status</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Delivery ID</th>
+                  <th scope="col">Customer Name</th>
+                  <th scope="col">Issue type</th>
+                  <th scope="col">Priority</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="exceptions-body">
+                <tr id="empty-state-row" class="empty-state-row">
+                  <td colspan="6">
+                    <div class="empty-state">
+                      <span class="empty-state__icon" aria-hidden="true">✓</span>
+                      <strong>No exceptions yet</strong>
+                      <span>New delivery issues will appear here.</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">All changes are kept in this session only.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p><strong>GreyAtom Logistics</strong> <span>•</span> Internal Operations Tools</p>
+      <p>Delivery Exception Management <span>•</span> Frontend Assignment</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

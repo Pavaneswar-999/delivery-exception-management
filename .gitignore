@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+dist/
+build/
+*.min.css
+*.min.js
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test & Coverage
+coverage/
+.nyc_output/
+axe-results.json
+lighthouse-report.json
+*.lighthouse.json
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
+ehthumbs.db
+Desktop.ini
+
+# Misc
+*.tgz
+.cache/
