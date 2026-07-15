@@ -25,14 +25,9 @@
         </a>
 
         <div class="topbar__context">
-          <span>Internal operations tools</span>
+          <span>Operations dashboard</span>
           <span class="context-divider" aria-hidden="true"></span>
           <span>Delivery exceptions</span>
-        </div>
-
-        <div class="topbar__mode">
-          <span class="mode-dot" aria-hidden="true"></span>
-          <span>Session-only mode</span>
         </div>
       </div>
     </header>
@@ -43,12 +38,8 @@
           <p class="eyebrow">DELIVERY OPERATIONS <span>/</span> EXCEPTION MANAGEMENT</p>
           <h1 id="page-title">Delivery exception management</h1>
           <p class="page-heading__intro">
-            Log, triage, and resolve delivery exceptions from one operational queue.
+            Log and resolve delivery exceptions from one operational queue.
           </p>
-        </div>
-        <div class="page-heading__meta">
-          <span class="workspace-label">Frontend-only workspace</span>
-          <span class="date-label">Version 1</span>
         </div>
       </section>
 
@@ -146,7 +137,7 @@
             <div class="form-footer">
               <p class="required-note"><span aria-hidden="true">*</span> Required fields are marked with an asterisk.</p>
               <button class="button button--primary" type="submit">
-                <span aria-hidden="true">+</span> Create exception
+                <span aria-hidden="true">+</span> Submit exception
               </button>
             </div>
           </form>
@@ -158,7 +149,6 @@
               <p class="section-kicker">OPERATIONS QUEUE</p>
               <h2>Delivery exception queue</h2>
             </div>
-            <span class="queue-meta">Session-only records</span>
           </div>
 
           <div class="filters" aria-label="Filter exceptions">
@@ -205,21 +195,19 @@
                       <span class="empty-state__icon" aria-hidden="true">+</span>
                       <strong>No exceptions recorded</strong>
                       <span>Create an exception record to start the queue.</span>
-                      <button id="empty-state-action" class="button button--secondary empty-state__action" type="button">Create first exception</button>
+                      <button id="empty-state-action" class="button button--secondary empty-state__action" type="button">Add first exception</button>
                     </div>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p class="table-note">Session-only workspace. Records are cleared when this page is closed.</p>
         </article>
       </section>
     </main>
 
     <footer class="footer">
-      <p><strong>GreyAtom Logistics</strong> <span>•</span> Internal Operations Tools</p>
-      <p>Session-only data <span>•</span> No backend connection</p>
+      <p><strong>GreyAtom Logistics</strong> <span>•</span> Operations dashboard</p>
     </footer>
 
     <dialog id="delete-dialog" class="delete-dialog" aria-labelledby="delete-dialog-title" aria-describedby="delete-dialog-copy">
