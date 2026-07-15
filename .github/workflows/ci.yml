@@ -93,7 +93,7 @@ jobs:
 
       - name: Deploy to GitHub Pages Preview
         uses: peaceiris/actions-gh-pages@v3
-        if: github.repository_owner == 'pavan'
+        if: github.repository_owner == 'Pavaneswar-999'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .

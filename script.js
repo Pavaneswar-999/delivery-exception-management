@@ -23,7 +23,7 @@ const exceptions = [];
 let nextExceptionId = 1;
 let pendingDeleteException = null;
 
-exceptionForm.addEventListener("submit", function (event) {
+exceptionForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const deliveryId = deliveryIdInput.value.trim();
@@ -50,11 +50,11 @@ exceptionForm.addEventListener("submit", function (event) {
 
   const exception = {
     id: nextExceptionId,
-    deliveryId: deliveryId,
-    customerName: customerName,
-    issueType: issueType,
+    deliveryId,
+    customerName,
+    issueType,
     priority: selectedPriority.value,
-    notes: notes,
+    notes,
     status: "Open",
     row: null
   };
@@ -72,7 +72,7 @@ exceptionForm.addEventListener("submit", function (event) {
   deliveryIdInput.focus();
 });
 
-exceptionsBody.addEventListener("click", function (event) {
+exceptionsBody.addEventListener("click", (event) => {
   const actionButton = event.target;
   const action = actionButton.getAttribute("data-action");
 
@@ -112,10 +112,10 @@ clearFiltersButton.addEventListener("click", resetFilters);
 closeDeleteDialogButton.addEventListener("click", closeDeleteDialog);
 cancelDeleteButton.addEventListener("click", closeDeleteDialog);
 confirmDeleteButton.addEventListener("click", confirmDelete);
-emptyStateAction.addEventListener("click", function () {
+emptyStateAction.addEventListener("click", () => {
   deliveryIdInput.focus();
 });
-deleteDialog.addEventListener("click", function (event) {
+deleteDialog.addEventListener("click", (event) => {
   if (event.target === deleteDialog) {
     closeDeleteDialog();
   }

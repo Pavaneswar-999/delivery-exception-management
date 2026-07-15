@@ -5,7 +5,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/pavan/delivery-exception-management.git"
+    "url": "https://github.com/Pavaneswar-999/delivery-exception-management.git"
   },
   "scripts": {
     "dev": "http-server -p 8000 -c-1",
@@ -19,8 +19,8 @@
     "check:format": "prettier --check \"**/*.{html,css,js,json,md}\""
   },
   "devDependencies": {
-    "@htmlhint/htmlhint": "^1.1.4",
-    "axe-cli": "^5.0.0",
+    "htmlhint": "^1.9.2",
+    "axe-cli": "^3.2.1",
     "eslint": "^8.57.0",
     "http-server": "^14.1.1",
     "lighthouse": "^12.0.0",
